@@ -1,1 +1,8 @@
-mysql/
+/vendor
+/node_modules
+.env
+/mysql
+/storage/*.key
+/storage/logs/*.log
+.idea
+.DS_Store
