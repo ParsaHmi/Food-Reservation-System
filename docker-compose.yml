@@ -40,6 +40,17 @@ services:
     networks:
       - laravel
 
+
+  node:
+    image: node:20
+    container_name: laravel_node
+    working_dir: /app
+    volumes:
+      - .:/app
+    entrypoint: ["sh", "-c"]
+    command: "npm install && npm run dev"
+
+    
 networks:
   laravel:
     driver: bridge
