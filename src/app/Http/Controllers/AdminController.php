@@ -11,8 +11,13 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard');
+        if (!session()->get('is_admin')) {
+            return redirect()->route('admin.login')->with('error', 'You must be admin!');
+        }
+    
+        return view('admin.dashboard'); // یا متن ساده مثل: return "welcome admin!";
     }
+    
 
     public function addUser(Request $request)
     {

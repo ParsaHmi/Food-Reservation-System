@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminLoginController;
 
 
 Route::get('/root', function () {
@@ -20,6 +21,12 @@ Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])
 
 
 Route::middleware('web')->group(function () {
+    
+    // نمایش فرم ورود ادمین
+    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    // بررسی فرم و ورود
+    Route::post('/admin/login', [AdminLoginController::class, 'login'])->name('admin.login.submit');
+    // صفحه داشبورد ادمین (بعد از ورود موفق)
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     // افزودن کاربر
@@ -31,6 +38,13 @@ Route::middleware('web')->group(function () {
     // مدیریت غذا
     Route::post('/admin/foods/add', [AdminController::class, 'addFood'])->name('admin.foods.add');
     Route::post('/admin/foods/update', [AdminController::class, 'updateFood'])->name('admin.foods.update');
+
+
+    
+
+
+
+
 });
 
 
