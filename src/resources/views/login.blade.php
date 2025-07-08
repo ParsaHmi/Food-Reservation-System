@@ -5,9 +5,7 @@
     <title>Login to System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Vazir', sans-serif;
@@ -59,8 +57,7 @@
             transition: border-color 0.3s ease;
         }
 
-        input[type="text"]:focus,
-        input[type="password"]:focus {
+        input:focus {
             border-color: #15ff00;
             outline: none;
         }
@@ -83,18 +80,20 @@
             background-color: #0ecc00;
         }
 
-        .forgot {
+        .links {
             text-align: center;
-            margin-top: 15px;
+            margin-top: 20px;
         }
 
-        .forgot a {
+        .links a {
+            display: block;
             color: #0056ff;
             text-decoration: none;
             font-size: 14px;
+            margin: 8px 0;
         }
 
-        .forgot a:hover {
+        .links a:hover {
             text-decoration: underline;
         }
 
@@ -123,11 +122,12 @@
             <input type="password" name="password" required>
 
             <button type="submit">Login</button>
-
-            <div class="forgot">
-                <a href="{{ route('resetPassword') }}">Forgot Password?</a>
-            </div>
         </form>
+
+        <div class="links">
+            <a href="{{ route('resetPassword') }}">Forgot Password?</a>
+            <a href="{{ route('admin.dashboard') }}">Admin Panel</a>
+        </div>
     </div>
 </body>
 </html>
