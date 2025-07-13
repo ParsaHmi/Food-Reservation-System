@@ -25,7 +25,7 @@ class LoginController extends Controller
             // return redirect()->intended('/dashboard');
 
         return back()->withErrors([
-            'username' => 'نام کاربری یا رمز عبور نادرست است.',
+            'username' => 'Username or Password is incorrect.',
         ]);
     }
 }
