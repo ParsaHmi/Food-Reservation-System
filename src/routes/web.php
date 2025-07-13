@@ -21,6 +21,7 @@ Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])
 
 
 Route::middleware('web')->group(function () {
+    // Route::prefix('admin')->name('admin.')->group(function () {
     
     // نمایش فرم ورود ادمین
     Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
@@ -30,24 +31,28 @@ Route::middleware('web')->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     // افزودن کاربر
-    Route::post('/admin/users/add', [AdminController::class, 'addUser'])->name('admin.users.add');
+    Route::get('/admin/users/create', [AdminController::class, 'createUserForm'])->name('admin.users.create');
 
     // ورود با آیدی
-    Route::post('/admin/users/loginById', [AdminController::class, 'loginById'])->name('admin.users.loginById');
+    Route::get('/admin/users/login', [AdminController::class, 'loginByUsernameForm'])->name('admin.users.loginByUsernameForm');
 
     // مدیریت غذا
-    Route::post('/admin/foods/add', [AdminController::class, 'addFood'])->name('admin.foods.add');
-    Route::post('/admin/foods/update', [AdminController::class, 'updateFood'])->name('admin.foods.update');
+    Route::get('/admin/foods/edit', [AdminController::class, 'editFoods'])->name('admin.foods.edit');
+
 
 
     
 
 
-
-
+    
+    
+    
+    
+    
 });
 
 
+// Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 // Route::get('/password/reset', function() {
     //     return view('auth.passwords.email');
     // })->name('password.request');

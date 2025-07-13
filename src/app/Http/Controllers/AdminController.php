@@ -62,3 +62,7 @@ class AdminController extends Controller
         return back()->withErrors(['Food not found']);
     }
 }
+
+
+
+
