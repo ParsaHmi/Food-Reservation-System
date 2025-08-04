@@ -76,6 +76,7 @@
             <li><a href="{{ route('admin.foods.edit') }}">Update Foods</a></li>
             <li><a href="{{ route('admin.users.loginByUsernameForm') }}">Login By Username</a></li>
             <li><a href="{{ route('admin.users.create') }}">Add / Delete User</a></li>
+            <li><a href="{{ route('login') }}">Exit</a></li>
         </ul>
     </div>
 </body>
