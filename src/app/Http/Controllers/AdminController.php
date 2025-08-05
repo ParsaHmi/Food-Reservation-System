@@ -19,6 +19,55 @@ class AdminController extends Controller
     }
     
 
+
+
+
+    public function changeUserForm()
+    {
+        return view('admin.users'); // این ویو را بعداً می‌سازیم
+    }
+    
+
+    
+    public function createUser(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:50',
+            'lastname' => 'required|string|max:50',
+            'username' => 'required|string|max:30|unique:users',
+            'password' => 'required|string|min:8',
+        ]);
+    
+        User::create([
+            'name' => $validated['name'],
+            'lastname' => $validated['lastname'],
+            'username' => $validated['username'],
+            'password' => Hash::make($validated['password']),
+        ]);
+    
+        return back()->with('success', 'کاربر با موفقیت ایجاد شد');
+    }
+    
+    public function deleteUser(Request $request)
+    {
+        $request->validate(['user_id' => 'required|numeric']);
+        
+        $user = User::findOrFail($request->user_id);
+        $user->delete();
+        
+        return back()->with('success', 'کاربر با موفقیت حذف شد');
+    }
+
+
+
+
+
+
+
+
+
+
+
     public function addUser(Request $request)
     {
         $user = new User();
@@ -30,6 +79,12 @@ class AdminController extends Controller
         return back()->with('success', 'User created!');
     }
 
+
+
+
+
+
+
     public function loginById(Request $request)
     {
         $user = User::find($request->id);
@@ -39,6 +94,15 @@ class AdminController extends Controller
         }
         return back()->withErrors(['User not found']);
     }
+
+
+
+
+
+
+
+
+
 
     public function addFood(Request $request)
     {
