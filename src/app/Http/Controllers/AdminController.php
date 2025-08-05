@@ -28,8 +28,10 @@ class AdminController extends Controller
     }
     
 
+
+
     
-    public function createUser(Request $request)
+    public function storeUser(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:50',
