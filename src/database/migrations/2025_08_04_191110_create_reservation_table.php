@@ -18,7 +18,7 @@ return new class extends Migration
             // اگر بخوای خودت شناسه داشته باشی، از این استفاده نکن:
             // $table->id();
 
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete(); // به users.id
+            $table->Integer('user_id')->foreignId('user_id')->constrained()->cascadeOnDelete(); // به users.id
             $table->foreignId('food_id')->default(1)->constrained('foods')->cascadeOnDelete(); // به foods.id
             $table->dateTime('reservation_date'); // تاریخ رزرو
             $table->boolean('eaten')->default(false);

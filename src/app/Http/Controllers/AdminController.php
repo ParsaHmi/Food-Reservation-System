@@ -15,7 +15,7 @@ class AdminController extends Controller
             return redirect()->route('admin.login')->with('error', 'You must be admin!');
         }
     
-        return view('admin.dashboard'); // یا متن ساده مثل: return "welcome admin!";
+        return view('admin.dashboard');
     }
     
 
@@ -47,7 +47,7 @@ class AdminController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
     
-        return back()->with('success', 'کاربر با موفقیت ایجاد شد');
+        return back()->with('success', 'user created succesfully');
     }
     
     public function deleteUser(Request $request)
@@ -57,7 +57,7 @@ class AdminController extends Controller
         $user = User::findOrFail($request->user_id);
         $user->delete();
         
-        return back()->with('success', 'کاربر با موفقیت حذف شد');
+        return back()->with('success', 'user deleted successfully');
     }
 
 
