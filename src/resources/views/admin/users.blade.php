@@ -48,6 +48,16 @@
             background-color: #f8f9fa;
             text-align: left;
         }
+        .table-responsive {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .users-table th {
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -117,6 +127,42 @@
                                 <i class="fas fa-trash"></i> DELETE USER 
                             </button>
                         </form>
+
+                        <!-- جدول کاربران موجود -->
+                        <div class="mt-4">
+                            <h6 class="text-muted mb-3">Existing Users:</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover users-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse($users as $user)
+                                        <tr>
+                                            <td><strong>{{ $user->id }}</strong></td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->last_name }}</td>
+                                            <td>{{ $user->username }}</td>
+                                        </tr>
+                                        @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted py-3">
+                                                No users found
+                                            </td>
+                                        </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-muted small mt-2">
+                                Total: {{ count($users) }} users
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,5 +171,24 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- اسکریپت برای پر کردن خودکار فیلد ID هنگام کلیک روی ردیف -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableRows = document.querySelectorAll('.users-table tbody tr');
+            const userIdInput = document.getElementById('user_id');
+            
+            tableRows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const userId = this.cells[0].textContent.trim();
+                    userIdInput.value = userId;
+                    
+                    // هایلایت کردن ردیف انتخاب شده
+                    tableRows.forEach(r => r.classList.remove('table-active'));
+                    this.classList.add('table-active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -27,7 +27,8 @@ class AdminController extends Controller
 
     public function changeUserForm()
     {
-        return view('admin.users'); // این ویو را بعداً می‌سازیم
+        $users = DB::table('users')->orderBy('id', 'desc')->get();
+        return view('admin.users', compact('users'));
     }
     
 

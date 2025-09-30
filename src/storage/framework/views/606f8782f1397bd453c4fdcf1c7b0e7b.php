@@ -1,4 +1,3 @@
-
 <?php if(session('success')): ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <?php echo e(session('success')); ?>
@@ -50,6 +49,16 @@
             padding: 20px;
             background-color: #f8f9fa;
             text-align: left;
+        }
+        .table-responsive {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .users-table th {
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            z-index: 10;
         }
     </style>
 </head>
@@ -120,6 +129,42 @@
                                 <i class="fas fa-trash"></i> DELETE USER 
                             </button>
                         </form>
+
+                        <!-- جدول کاربران موجود -->
+                        <div class="mt-4">
+                            <h6 class="text-muted mb-3">Existing Users:</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover users-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $__empty_1 = true; $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <tr>
+                                            <td><strong><?php echo e($user->id); ?></strong></td>
+                                            <td><?php echo e($user->name); ?></td>
+                                            <td><?php echo e($user->last_name); ?></td>
+                                            <td><?php echo e($user->username); ?></td>
+                                        </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted py-3">
+                                                No users found
+                                            </td>
+                                        </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-muted small mt-2">
+                                Total: <?php echo e(count($users)); ?> users
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,5 +173,24 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- اسکریپت برای پر کردن خودکار فیلد ID هنگام کلیک روی ردیف -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableRows = document.querySelectorAll('.users-table tbody tr');
+            const userIdInput = document.getElementById('user_id');
+            
+            tableRows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const userId = this.cells[0].textContent.trim();
+                    userIdInput.value = userId;
+                    
+                    // هایلایت کردن ردیف انتخاب شده
+                    tableRows.forEach(r => r.classList.remove('table-active'));
+                    this.classList.add('table-active');
+                });
+            });
+        });
+    </script>
 </body>
 </html><?php /**PATH /var/www/html/resources/views/admin/users.blade.php ENDPATH**/ ?>
