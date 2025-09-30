@@ -34,21 +34,26 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        $id = $request->id;
-        $name = $request->name;
-        $lastname = $request->lastname;
-        $username = $request->username;
-        $password = Hash::make($request->password);
 
-        DB::table('users')->insert([
-            'id' => $id,
-            'name' => $name,
-            'last_name' => $lastname,
-            'username' => $username,
-            'password' => $password
-        ]);
-        
-        return back() ;
+        try {
+            $id = $request->id;
+            $name = $request->name;
+            $lastname = $request->lastname;
+            $username = $request->username;
+            $password = Hash::make($request->password);
+            
+            DB::table('users')->insert([
+                'id' => $id,
+                'name' => $name,
+                'last_name' => $lastname,
+                'username' => $username,
+                'password' => $password
+            ]);
+            
+            return back()->with('success', 'User created successfully!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Failed to create user: ' . $e->getMessage());
+        }
     }
     
 
