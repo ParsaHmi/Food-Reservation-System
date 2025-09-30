@@ -60,14 +60,20 @@ class AdminController extends Controller
 
     
     
-    public function deleteUser(Request $request)
+    public function destroy(Request $request)
     {
-        $request->validate(['user_id' => 'required|numeric']);
-        
-        $user = User::findOrFail($request->user_id);
-        $user->delete();
-        
-        return back()->with('success', 'user deleted successfully');
+        try {
+            $request->validate([
+                'user_id' => 'required|integer|exists:users,id',
+            ]);
+
+            DB::table('users')->where('id', $request->user_id)->delete();
+
+            return back()->with('success', 'User deleted successfully!');
+            
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error deleting user: ' . $e->getMessage());
+        }
     }
 
 
