@@ -6,6 +6,9 @@ use App\Models\User;
 use App\Models\Food;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class AdminController extends Controller
 {
@@ -29,26 +32,27 @@ class AdminController extends Controller
     
 
 
+    public function store(Request $request)
+    {
+        $id = $request->id;
+        $name = $request->name;
+        $lastname = $request->lastname;
+        $username = $request->username;
+        $password = Hash::make($request->password);
+
+        DB::table('users')->insert([
+            'id' => $id,
+            'name' => $name,
+            'last_name' => $lastname,
+            'username' => $username,
+            'password' => $password
+        ]);
+        
+        return back() ;
+    }
+    
 
     
-    public function storeUser(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:50',
-            'lastname' => 'required|string|max:50',
-            'username' => 'required|string|max:30|unique:users',
-            'password' => 'required|string|min:8',
-        ]);
-    
-        User::create([
-            'name' => $validated['name'],
-            'lastname' => $validated['lastname'],
-            'username' => $validated['username'],
-            'password' => Hash::make($validated['password']),
-        ]);
-    
-        return back()->with('success', 'user created succesfully');
-    }
     
     public function deleteUser(Request $request)
     {

@@ -37,10 +37,10 @@ Route::middleware('web')->group(function () {
     Route::get('/admin/users', [AdminController::class, 'usersManagement'])->name('admin.users.index');
     
     // ایجاد کاربر جدید
-    Route::post('/admin/users', [AdminController::class, 'storeUser'])->name('admin.users.store');
+    Route::post('/admin/users', [AdminController::class, 'store'])->name('admin.users.store');
     
     // حذف کاربر
-    Route::delete('/admin/users', [AdminController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::delete('/admin/users', [AdminController::class, 'destroy'])->name('admin.users.delete');
     
     
     
@@ -50,14 +50,9 @@ Route::middleware('web')->group(function () {
     // مدیریت غذا
     Route::get('/admin/foods/edit', [AdminController::class, 'editFoods'])->name('admin.foods.edit');
     
-
-    
-    
-    
     
     
 });
-
 
 // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 // Route::get('/password/reset', function() {
