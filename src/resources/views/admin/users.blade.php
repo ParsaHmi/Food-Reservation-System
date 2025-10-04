@@ -58,10 +58,20 @@
             background: #f8f9fa;
             z-index: 10;
         }
+        .back-btn {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container-fluid">
+        <!-- دکمه برگشت -->
+        <div class="back-btn">
+            <button onclick="window.history.back()" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> BACK
+            </button>
+        </div>
+
         <h2 class="mb-4 text-center">CHANGING USERS</h2>        
         <div class="row">
             <!-- بخش راست (ایجاد کاربر جدید) -->
