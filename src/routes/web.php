@@ -50,12 +50,13 @@ Route::middleware('web')->group(function () {
     // مدیریت غذا
     Route::get('/admin/foods/edit', [AdminController::class, 'editFoods'])->name('admin.foods.edit');
     
+    Route::get('/admin/foods/create', [AdminController::class, 'createFood'])->name('admin.foods.create');
     
     
 });
 
 // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-// Route::get('/password/reset', function() {
+// Rc', oute::get('/password/reset', function() {
     //     return view('auth.passwords.email');
     // })->name('password.request');
     

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 
 class AdminController extends Controller
@@ -114,7 +116,70 @@ class AdminController extends Controller
     }
 
 
+    // public function editFoods(){
+    //     return 'salam';
+    // }
 
+public function editFoods(Request $request)
+{
+// دریافت تاریخ از URL یا استفاده از تاریخ جاری
+    $selectedDate = $request->get('date', Carbon::now()->format('Y-m-d'));
+    $currentDate = Carbon::parse($selectedDate);
+    
+    // پیدا کردن شنبه هفته جاری
+    $startOfWeek = $currentDate->copy()->startOfWeek(Carbon::SATURDAY);
+    
+    // ایجاد آرایه‌ای از روزهای هفته (شنبه تا چهارشنبه)
+    $days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه'];
+    $weekDays = []; // این آرایه است
+    foreach ($days as $index => $dayName) {
+        $dayDate = $startOfWeek->copy()->addDays($index);
+        $weekDays[] = [
+            'name' => $dayName,
+            'date' => $dayDate->format('Y-m-d'),
+            'display_date' => $dayDate->format('d F Y'),
+            'foods' => Food::whereDate('date', $dayDate->format('Y-m-d'))->get()
+        ];
+    }
+
+    // تبدیل آرایه به Collection
+    $weekDays = new Collection($weekDays);
+    // تاریخ‌های هفته قبل و بعد
+    $previousWeek = $startOfWeek->copy()->subWeek()->format('Y-m-d');
+    $nextWeek = $startOfWeek->copy()->addWeek()->format('Y-m-d');
+    $currentWeek = $startOfWeek->format('Y-m-d');
+    
+    $weekDaysCollection = collect($weekDays);
+    
+    // محاسبات
+    $totalFoods = $weekDaysCollection->sum(function($day) {
+        return count($day['foods']);
+    });
+    
+    $daysWithFood = $weekDaysCollection->filter(function($day) {
+        return count($day['foods']) > 0;
+    })->count();
+    
+    $totalPrice = $weekDaysCollection->sum(function($day) {
+        return collect($day['foods'])->sum('price');
+    });
+    
+    return view('admin.foods.index', compact(
+        'weekDays', 
+        'previousWeek', 
+        'nextWeek', 
+        'currentWeek',
+        'selectedDate',
+        'totalFoods',
+        'daysWithFood',
+        'totalPrice'
+    ));
+}
+
+
+public function createFood(Request $request){
+    return "hi";
+}
 
 
 
