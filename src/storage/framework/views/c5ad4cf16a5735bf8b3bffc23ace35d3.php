@@ -1,17 +1,25 @@
 <?php $__env->startSection('content'); ?>
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>غذاهای هفته</h1>
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1>Weekly Foods</h1>
+        </div>
     </div>
+<?php if(session('success')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?php echo e(session('success')); ?>
 
-    <!-- ناوبری هفته -->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
+    <!-- Week Navigation -->
     <div class="card mb-4">
         <div class="card-body">
             <div class="row align-items-center">
                 <div class="col-md-4">
                     <a href="<?php echo e(route('admin.foods.edit', ['date' => $previousWeek])); ?>" 
                        class="btn btn-outline-primary">
-                        ← هفته قبل
+                        ← Previous Week
                     </a>
                 </div>
                 
@@ -23,30 +31,30 @@
                                value="<?php echo e(date('Y-\WW', strtotime($currentWeek))); ?>"
                                onchange="this.form.submit()">
                     </form>
-                    <small class="text-muted">هفته جاری: <?php echo e(Carbon\Carbon::parse($currentWeek)->format('d F Y')); ?></small>
+                    <small class="text-muted">Current Week: <?php echo e(Carbon\Carbon::parse($currentWeek)->format('d F Y')); ?></small>
                 </div>
                 
                 <div class="col-md-4 text-end">
                     <a href="<?php echo e(route('admin.foods.edit', ['date' => $nextWeek])); ?>" 
                        class="btn btn-outline-primary">
-                        هفته بعد →
+                        Next Week →
                     </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- جدول غذاهای هفته -->
+    <!-- Weekly Foods Table -->
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered">
                     <thead class="table-dark">
                         <tr>
-                            <th width="15%">روز</th>
-                            <th width="20%">تاریخ</th>
-                            <th>غذاها</th>
-                            <th width="15%">تعداد غذاها</th>
+                            <th width="15%">Day</th>
+                            <th width="20%">Date</th>
+                            <th>Foods</th>
+                            <th width="15%">Add Food</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,11 +77,14 @@
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div>
                                                             <h6 class="mb-0"><?php echo e($food->name); ?></h6>
-                                                            <small class="text-muted"><?php echo e(number_format($food->price)); ?> تومان</small>
+                                                            <small class="text-muted">Food ID: <?php echo e($food->food_id); ?></small>
                                                         </div>
                                                         <div class="btn-group btn-group-sm">
-                                                            <a href="<?php echo e(route('admin.foods.edit', $food->id)); ?>" 
-                                                               class="btn btn-outline-warning">ویرایش</a>
+                                                            <form action="<?php echo e(route('admin.foods.destroy', $food->id)); ?>" method="POST" class="d-inline">
+                                                                <?php echo csrf_field(); ?>
+                                                                <?php echo method_field('DELETE'); ?>
+                                                                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this food?')">Delete</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                     <?php if($food->description): ?>
@@ -85,18 +96,14 @@
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                 <?php else: ?>
-                                    <span class="text-muted">هیچ غذایی برای این روز ثبت نشده است</span>
-                                    <br>
-                                    <a href="<?php echo e(route('admin.foods.create')); ?>?date=<?php echo e($day['date']); ?>" 
-                                       class="btn btn-sm btn-outline-success mt-2">
-                                        افزودن غذا
-                                    </a>
+                                    <span class="text-muted">No food registered for this day</span>
                                 <?php endif; ?>
                             </td>
                             <td class="text-center">
-                                <span class="badge bg-<?php echo e($day['foods']->count() > 0 ? 'success' : 'secondary'); ?>">
-                                    <?php echo e($day['foods']->count()); ?> غذا
-                                </span>
+                                <a href="<?php echo e(route('admin.foods.create')); ?>?date=<?php echo e($day['date']); ?>" 
+                                   class="btn btn-success btn-sm">
+                                    Add Food
+                                </a>
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -106,31 +113,21 @@
         </div>
     </div>
 
-    <!-- آمار کلی -->
+    <!-- Statistics -->
     <div class="row mt-4">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card bg-info text-white">
                 <div class="card-body text-center">
                     <h4><?php echo e($weekDays->sum(function($day) { return $day['foods']->count(); })); ?></h4>
-                    <p>کل غذاهای هفته</p>
+                    <p>Total Weekly Foods</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card bg-success text-white">
                 <div class="card-body text-center">
                     <h4><?php echo e($weekDays->where('foods.count', '>', 0)->count()); ?>/5</h4>
-                    <p>روزهای دارای غذا</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card bg-warning text-dark">
-                <div class="card-body text-center">
-                    <h4><?php echo e(number_format($weekDays->sum(function($day) { 
-                        return $day['foods']->sum('price'); 
-                    }))); ?></h4>
-                    <p>مجموع قیمت‌ها (تومان)</p>
+                    <p>Days with Food</p>
                 </div>
             </div>
         </div>

@@ -49,10 +49,15 @@ Route::middleware('web')->group(function () {
     
     // مدیریت غذا
     Route::get('/admin/foods/edit', [AdminController::class, 'editFoods'])->name('admin.foods.edit');
-    
-    Route::get('/admin/foods/create', [AdminController::class, 'createFood'])->name('admin.foods.create');
-    
-    
+        
+    Route::get('/admin/foods/create', [AdminController::class, 'foodCreate'])->name('admin.foods.create');
+    Route::post('/admin/foods', [AdminController::class, 'foodStore'])->name('admin.foods.store');
+
+    // حذف غذا - DELETE 
+    Route::delete('admin/foods/{id}', [AdminController::class, 'foodDestroy'])->name('admin.foods.destroy');   
+
+
+
 });
 
 // Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

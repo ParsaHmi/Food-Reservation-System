@@ -130,8 +130,9 @@ public function editFoods(Request $request)
     $startOfWeek = $currentDate->copy()->startOfWeek(Carbon::SATURDAY);
     
     // ایجاد آرایه‌ای از روزهای هفته (شنبه تا چهارشنبه)
-    $days = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه'];
+    $days = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday'];
     $weekDays = []; // این آرایه است
+    
     foreach ($days as $index => $dayName) {
         $dayDate = $startOfWeek->copy()->addDays($index);
         $weekDays[] = [
@@ -177,10 +178,56 @@ public function editFoods(Request $request)
 }
 
 
-public function createFood(Request $request){
-    return "hi";
+public function foodCreate()
+{
+    return view('admin.foods.create');
 }
 
+public function foodStore(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:30',
+        'date' => 'required|date',
+        'description' => 'nullable|string',
+        'food_id' => [
+            'required',
+            'integer',
+            // بررسی اینکه شماره غذا در همان روز تکراری نباشد
+            function ($attribute, $value, $fail) use ($request) {
+                $exists = Food::where('date', $request->date)
+                            ->where('food_id', $value)
+                            ->exists();
+                if ($exists) {
+                    $fail("Food ID {$value} already exists for date {$request->date}.");
+                }
+            },
+        ]
+    ]);
+
+    Food::create($validated);
+
+    return redirect()->route('admin.foods.edit') // مطمئن شوید به صفحه درست redirect می‌کنید
+        ->with('success', 'Food added successfully!');
+}
+
+
+
+
+
+public function foodDestroy($id)
+{
+    try {
+        $food = Food::findOrFail($id);
+        $food->delete();
+
+        return redirect()->route('admin.foods.edit')
+            ->with('success', 'Food deleted successfully!');
+            
+    } catch (\Exception $e) {
+        return redirect()->route('admin.foods.edit')
+            ->with('error', 'Error deleting food: ' . $e->getMessage());
+    }
+}
 
 
 
