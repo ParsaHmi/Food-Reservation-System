@@ -7,6 +7,11 @@
             <h1>Weekly Foods</h1>
         </div>
     </div>
+    
+<div class="mb-4 text-end">
+    <a href="http://localhost:8888/admin/" class="btn btn-secondary">← Back to Admin Page</a>
+</div>
+
 @if(session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
