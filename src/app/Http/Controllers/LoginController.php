@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -14,18 +15,25 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        // اعتبارسنجی فرم
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
         $credentials = $request->only('username', 'password');
 
-        // if (Auth::attempt($credentials)) {
-            $username = $request->input('username');
-            $password = $request->input('password');
-    
-        // }
-            return view('result', compact('username', 'password'));
-            // return redirect()->intended('/dashboard');
+        // چک کردن authentication واقعی
+        if (Auth::attempt($credentials)) {
+            // ورود موفق
+            $request->session()->regenerate();
+            // return redirect('/dashboard'); // استفاده از URL مستقیم
+            return "afarin";
+        }
 
+        // ورود ناموفق
         return back()->withErrors([
-            'username' => 'Username or Password is incorrect.',
-        ]);
+            'login_error' => 'Invalid username or password.',
+        ])->withInput();
     }
 }
