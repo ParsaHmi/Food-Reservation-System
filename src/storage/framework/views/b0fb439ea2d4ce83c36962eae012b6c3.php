@@ -40,6 +40,17 @@
             font-size: 20px;
         }
 
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #ffcdd2;
+            font-size: 14px;
+        }
+
         label {
             display: block;
             margin-top: 20px;
@@ -112,11 +123,19 @@
             <h2>FOOD RESERVATION SYSTEM</h2>
         </div>
 
+        <!-- نمایش خطا -->
+        <?php if($errors->has('login_error')): ?>
+            <div class="error-message">
+                <?php echo e($errors->first('login_error')); ?>
+
+            </div>
+        <?php endif; ?>
+
         <form method="POST" action="<?php echo e(route('login')); ?>">
             <?php echo csrf_field(); ?>
 
             <label for="username">Username</label>
-            <input type="text" name="username" required>
+            <input type="text" name="username" value="<?php echo e(old('username')); ?>" required>
 
             <label for="password">Password</label>
             <input type="password" name="password" required>
@@ -130,5 +149,4 @@
         </div>
     </div>
 </body>
-</html>
-<?php /**PATH /var/www/html/resources/views/login.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /var/www/html/resources/views/login.blade.php ENDPATH**/ ?>

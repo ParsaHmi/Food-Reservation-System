@@ -40,6 +40,17 @@
             font-size: 20px;
         }
 
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #ffcdd2;
+            font-size: 14px;
+        }
+
         label {
             display: block;
             margin-top: 20px;
@@ -112,11 +123,18 @@
             <h2>FOOD RESERVATION SYSTEM</h2>
         </div>
 
+        <!-- نمایش خطا -->
+        @if($errors->has('login_error'))
+            <div class="error-message">
+                {{ $errors->first('login_error') }}
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <label for="username">Username</label>
-            <input type="text" name="username" required>
+            <input type="text" name="username" value="{{ old('username') }}" required>
 
             <label for="password">Password</label>
             <input type="password" name="password" required>
