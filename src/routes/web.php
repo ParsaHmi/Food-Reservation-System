@@ -18,29 +18,9 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 
-// Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('resetPassword');
 
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/password/reset', [ResetPasswordController::class, 'showForm']);
-
-// پردازش ریست پسورد - POST
+Route::get('/password/reset', [ResetPasswordController::class, 'showForm'])->name('resetPassword');
 Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword']);
-
-
-
-
-
-
 
 
 
