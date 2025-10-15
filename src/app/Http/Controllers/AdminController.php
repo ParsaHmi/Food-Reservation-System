@@ -101,25 +101,6 @@ class AdminController extends Controller
 
 
 
-
-
-
-
-    public function loginById(Request $request)
-    {
-        $user = User::find($request->id);
-        if ($user) {
-            Auth::login($user);
-            return redirect('/');
-        }
-        return back()->withErrors(['User not found']);
-    }
-
-
-    // public function editFoods(){
-    //     return 'salam';
-    // }
-
 public function editFoods(Request $request)
 {
 // دریافت تاریخ از URL یا استفاده از تاریخ جاری
@@ -255,8 +236,77 @@ public function foodDestroy($id)
         }
         return back()->withErrors(['Food not found']);
     }
+
+
+
+
+
+
+
+
+
+    public function loginByUsernameForm(){
+        return view('admin.users.login-by-username');
+    }
+
+    
+        public function showLoginAsUserForm()
+        {
+            // چک کردن دسترسی ادمین در هر متد
+            if (!Auth::user()->is_admin) {
+                abort(403, 'Access denied. Admin only.');
+            }
+            
+            return view('admin.login-as-user');
+        }
+    
+        public function loginById(Request $request)
+        {
+            $request->validate([
+                'username' => 'required|string'
+            ]);
+    
+            // پیدا کردن کاربر با username
+            $user = User::where('username', $request->username)->first();
+    
+            if (!$user) {
+                return back()->withErrors([
+                    'login_error' => 'User not found. Available users are shown below.',
+                ])->withInput();
+            }
+    
+            // جلوگیری از login as another admin
+            if ($user->is_admin) {
+                return back()->withErrors([
+                    'login_error' => 'Cannot login as another admin.',
+                ])->withInput();
+            }
+    
+            // ذخیره اطلاعات ادمین فعلی در session
+            session(['admin_id' => Auth::id()]);
+            
+            // Login as user
+            Auth::login($user);
+            $request->session()->regenerate();
+            
+            return redirect()->route('user.weekly-reservations')
+                ->with('success', "You are now logged in as {$user->username}");
+        }
+    
+        public function switchBackToAdmin()
+        {
+            $adminId = session('admin_id');
+            
+            if ($adminId) {
+                $admin = User::findOrFail($adminId);
+                Auth::login($admin);
+                session()->forget('admin_id');
+                
+                return redirect()->route('admin.dashboard')
+                    ->with('success', 'Switched back to admin account.');
+            }
+            
+            return redirect('/admin');
+        }
+
 }
-
-
-
-

@@ -43,27 +43,28 @@
                 <small class="opacity-75">Admin Access</small>
             </div>
             <div class="card-body p-4">
-                @if(session('success'))
+                <?php if(session('success')): ?>
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
+                        <?php echo e(session('success')); ?>
+
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                @endif
+                <?php endif; ?>
 
-                @if($errors->any())
+                <?php if($errors->any()): ?>
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Error!</strong>
                         <ul class="mb-0 mt-2">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                @endif
+                <?php endif; ?>
 
-                <form method="POST" action="{{ route('admin.login-by-id') }}">
-                    @csrf
+                <form method="POST" action="<?php echo e(route('admin.login-by-id')); ?>">
+                    <?php echo csrf_field(); ?>
 
                     <div class="mb-4">
                         <label for="username" class="form-label fw-bold">Username</label>
@@ -73,7 +74,7 @@
                                name="username" 
                                required
                                placeholder="Enter username"
-                               value="{{ old('username') }}"
+                               value="<?php echo e(old('username')); ?>"
                                autofocus>
                         <div class="form-text">Enter the username of the user you want to login as</div>
                     </div>
@@ -90,7 +91,7 @@
 
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary btn-lg">Login as User</button>
-                        <a href="{{ url()->previous() }}" class="btn btn-back btn-lg">Back</a>
+                        <a href="<?php echo e(url()->previous()); ?>" class="btn btn-back btn-lg">Back</a>
                     </div>
                 </form>
             </div>
@@ -99,12 +100,12 @@
         <!-- Admin Info - اصلاح شده -->
         <div class="text-center mt-4">
             <small class="text-muted">
-                @auth
-                    Logged in as: <strong>{{ Auth::user()->username }}</strong> 
+                <?php if(auth()->guard()->check()): ?>
+                    Logged in as: <strong><?php echo e(Auth::user()->username); ?></strong> 
                     <span class="badge bg-success ms-2">Admin</span>
-                @else
+                <?php else: ?>
                     <span class="text-warning">Not logged in</span>
-                @endauth
+                <?php endif; ?>
             </small>
         </div>
     </div>
@@ -124,4 +125,4 @@
         });
     </script>
 </body>
-</html>
+</html><?php /**PATH /var/www/html/resources/views/admin/users/login-by-username.blade.php ENDPATH**/ ?>

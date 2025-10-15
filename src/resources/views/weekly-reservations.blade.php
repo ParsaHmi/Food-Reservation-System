@@ -34,20 +34,37 @@
             border: 1px solid #007bff;
             color: #007bff;
         }
+        .navbar-nav .nav-item {
+            margin-left: 10px;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ route('user.weekly-reservations') }}">Food Reservation System</a>
-            <div class="navbar-nav ms-auto">
-                <span class="navbar-text text-light me-3">
-                    {{ Auth::user()->name ?? Auth::user()->username }}
-                </span>
-                <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                    @csrf
-                    <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
-                </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <span class="navbar-text text-light me-3">
+                            {{ Auth::user()->name ?? Auth::user()->username }}
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-warning btn-sm" href="{{ route('change-password') }}">
+                            Change Password
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-light btn-sm">Logout</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -184,7 +201,6 @@
                                                     <div class="ms-3">
                                                         <form action="{{ route('user.delete-reservation') }}" method="POST" class="d-inline">
                                                             @csrf
-                                                            <!-- تغییر اصلی اینجاست -->
                                                             <input type="hidden" name="reservation_date" value="{{ $day['date'] }}">
                                                             <button type="submit" class="btn btn-outline-danger btn-sm" 
                                                                     onclick="return confirm('Are you sure you want to delete your reservation for {{ $day['display_date'] }}?')">

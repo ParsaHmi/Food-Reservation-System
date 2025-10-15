@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserPasswordController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\UserReservationController;
 
@@ -31,6 +32,30 @@ Route::middleware('auth')->group(function () {
     Route::get('/weekly-reservations', [UserReservationController::class, 'weeklyReservations'])->name('user.weekly-reservations');
     Route::post('/reservations', [UserReservationController::class, 'storeReservation'])->name('user.store-reservation');
     Route::post('/reservations/delete', [UserReservationController::class, 'deleteReservation'])->name('user.delete-reservation');
+});
+
+
+
+
+// Admin Routes - بدون middleware اضافی
+Route::prefix('admin')->group(function () {
+    // Login as User
+    Route::get('/login-as-user', [AdminController::class, 'showLoginAsUserForm'])->name('admin.login-as-user.form');
+    Route::post('/login-by-id', [AdminController::class, 'loginById'])->name('admin.login-by-id');
+    
+    // Switch back to admin
+    Route::get('/switch-back', [AdminController::class, 'switchBackToAdmin'])->name('admin.switch-back');
+});
+
+
+
+
+
+
+Route::middleware('auth')->group(function () {
+    // ... routes قبلی
+    Route::get('/change-password', [UserPasswordController::class, 'showChangePasswordForm'])->name('change-password');
+    Route::post('/change-password', [UserPasswordController::class, 'changePassword'])->name('change-password.post');
 });
 
 
