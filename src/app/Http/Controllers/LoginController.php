@@ -27,13 +27,22 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             // ورود موفق
             $request->session()->regenerate();
-            // return redirect('/dashboard'); // استفاده از URL مستقیم
-            return "afarin";
+            // هدایت به صفحه رزرو هفتگی
+            return redirect()->route('user.weekly-reservations');
         }
 
         // ورود ناموفق
         return back()->withErrors([
             'login_error' => 'Invalid username or password.',
         ])->withInput();
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect('/login');
     }
 }

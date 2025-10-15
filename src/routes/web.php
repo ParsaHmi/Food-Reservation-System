@@ -6,6 +6,8 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\UserReservationController;
+
 
 
 Route::get('/root', function () {
@@ -16,17 +18,20 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::get('/password/reset', [ResetPasswordController::class, 'showForm'])->name('resetPassword');
 Route::post('/password/reset', [ResetPasswordController::class, 'resetPassword']);
 
 
-
-
-
-
+// User Reservation Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/weekly-reservations', [UserReservationController::class, 'weeklyReservations'])->name('user.weekly-reservations');
+    Route::post('/reservations', [UserReservationController::class, 'storeReservation'])->name('user.store-reservation');
+    Route::post('/reservations/delete', [UserReservationController::class, 'deleteReservation'])->name('user.delete-reservation');
+});
 
 
 
