@@ -159,7 +159,7 @@ class AdminController extends Controller
 
         Food::create($validated);
 
-        return redirect()->route('admin.foods.edit') // مطمئن شوید به صفحه درست redirect می‌کنید
+        return redirect()->route('admin.foods.edit')
             ->with('success', 'Food added successfully!');
     }
 

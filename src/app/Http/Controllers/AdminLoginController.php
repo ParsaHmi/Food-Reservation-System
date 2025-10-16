@@ -17,13 +17,10 @@ class AdminLoginController extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
-        // بررسی اعتبار (مقدار ثابت برای نمونه)
         if ($username === 'admin' && $password === '1234') {
-            // احراز هویت موفق
             Session::put('is_admin', true);
             return redirect()->route('admin.dashboard');
         } else {
-            // خطای ورود
             return redirect()->back()->with('error', 'Username or Password is incorrect.');
         }
     }
