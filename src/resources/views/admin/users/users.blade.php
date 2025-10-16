@@ -28,9 +28,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>USERS MANAGER</title>
-    <!-- Bootstrap CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .border-left {
@@ -65,7 +65,7 @@
 </head>
 <body>
     <div class="container-fluid">
-        <!-- دکمه برگشت -->
+        
         <div class="back-btn">
             <button onclick="window.history.back()" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> BACK
@@ -74,7 +74,7 @@
 
         <h2 class="mb-4 text-center">CHANGING USERS</h2>        
         <div class="row">
-            <!-- بخش راست (ایجاد کاربر جدید) -->
+            
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-success text-white">
@@ -117,7 +117,7 @@
                 </div>
             </div>
 
-            <!-- بخش چپ (حذف کاربر) -->
+            
             <div class="col-md-6 border-left">
                 <div class="card">
                     <div class="card-header bg-danger text-white">
@@ -137,8 +137,7 @@
                                 <i class="fas fa-trash"></i> DELETE USER 
                             </button>
                         </form>
-
-                        <!-- جدول کاربران موجود -->
+                        
                         <div class="mt-4">
                             <h6 class="text-muted mb-3">Existing Users:</h6>
                             <div class="table-responsive">
@@ -179,10 +178,8 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- اسکریپت برای پر کردن خودکار فیلد ID هنگام کلیک روی ردیف -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tableRows = document.querySelectorAll('.users-table tbody tr');
@@ -193,7 +190,6 @@
                     const userId = this.cells[0].textContent.trim();
                     userIdInput.value = userId;
                     
-                    // هایلایت کردن ردیف انتخاب شده
                     tableRows.forEach(r => r.classList.remove('table-active'));
                     this.classList.add('table-active');
                 });

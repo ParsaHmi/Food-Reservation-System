@@ -114,7 +114,11 @@
 <body>
     <div class="container">
         <div class="logo">
-            <img src="{{ asset('images/adminlogo.png') }}" alt="Admin Logo" height="360" width="360">
+            <img src="{{ asset('images/adminlogo.png') }}" 
+     alt="Admin Logo" 
+     height="360" 
+     width="360"
+     style="background-color: transparent;">
         </div>
 
         <h2>Admin Panel Login</h2>

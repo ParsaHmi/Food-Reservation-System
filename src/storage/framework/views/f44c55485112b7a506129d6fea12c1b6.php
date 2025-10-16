@@ -153,13 +153,13 @@ unset($__errorArgs, $__bag); ?>
                 </div>
             </div>
 
-            <!-- اطلاعات کمکی -->
+            
             <div class="card mt-4">
                 <div class="card-header bg-light">
                     <h6 class="mb-0">Quick Tips</h6>
                 </div>
                 <div class="card-body">
-                    <ul class="list-unstyled mb-0">
+                    <ul class="list-unstyled mb-0" style="text-align: left; direction: ltr;">
                         <li>• Food name should be descriptive and clear</li>
                         <li>• Select the correct date for the food</li>
                         <li>• Food ID must be unique for each food item</li>

@@ -123,7 +123,7 @@
             <h2>FOOD RESERVATION SYSTEM</h2>
         </div>
 
-        <!-- نمایش خطا -->
+        
         @if($errors->has('login_error'))
             <div class="error-message">
                 {{ $errors->first('login_error') }}

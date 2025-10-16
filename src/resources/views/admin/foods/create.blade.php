@@ -99,13 +99,13 @@
                 </div>
             </div>
 
-            <!-- اطلاعات کمکی -->
+            
             <div class="card mt-4">
                 <div class="card-header bg-light">
                     <h6 class="mb-0">Quick Tips</h6>
                 </div>
                 <div class="card-body">
-                    <ul class="list-unstyled mb-0">
+                    <ul class="list-unstyled mb-0" style="text-align: left; direction: ltr;">
                         <li>• Food name should be descriptive and clear</li>
                         <li>• Select the correct date for the food</li>
                         <li>• Food ID must be unique for each food item</li>
@@ -131,11 +131,11 @@
     }
 </style>
 
-<!-- اضافه کردن آیکون‌ها -->
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <script>
-    // تنظیم حداقل تاریخ به امروز
+    
     document.addEventListener('DOMContentLoaded', function() {
         const dateField = document.getElementById('date');
         if (dateField) {

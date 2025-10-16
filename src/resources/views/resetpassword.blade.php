@@ -45,7 +45,7 @@
                 
                 <div class="card reset-card">
                     <div class="card-header text-white text-center py-4">
-                        <h3 class="mb-0">🔐 Password Reset</h3>
+                        <h3 class="mb-0">Password Reset</h3>
                         <p class="mb-0 mt-2 opacity-75">Reset your password</p>
                     </div>
                     <div class="card-body p-4">
@@ -91,7 +91,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">
-                                🔄 Reset Password
+                                Reset Password
                             </button>
                         </form>
 

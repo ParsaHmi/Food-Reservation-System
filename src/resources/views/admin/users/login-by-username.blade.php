@@ -39,7 +39,7 @@
     <div class="login-container">
         <div class="card">
             <div class="card-header">
-                <h4 class="mb-0">🔐 Login as User</h4>
+                <h4 class="mb-0">Login as User</h4>
                 <small class="opacity-75">Admin Access</small>
             </div>
             <div class="card-body p-4">
@@ -80,7 +80,7 @@
 
                     <div class="alert alert-warning border-warning">
                         <div class="d-flex">
-                            <div class="me-3">⚠️</div>
+                            <div class="me-3"></div>
                             <div>
                                 <strong>Admin Access</strong><br>
                                 You will be logged in as this user and have full access to their account.
@@ -96,7 +96,7 @@
             </div>
         </div>
 
-        <!-- Admin Info - اصلاح شده -->
+        
         <div class="text-center mt-4">
             <small class="text-muted">
                 @auth

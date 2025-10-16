@@ -123,7 +123,7 @@
             <h2>FOOD RESERVATION SYSTEM</h2>
         </div>
 
-        <!-- نمایش خطا -->
+        
         <?php if($errors->has('login_error')): ?>
             <div class="error-message">
                 <?php echo e($errors->first('login_error')); ?>

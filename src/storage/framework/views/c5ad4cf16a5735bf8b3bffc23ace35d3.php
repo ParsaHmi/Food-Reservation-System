@@ -17,7 +17,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <?php endif; ?>
-    <!-- Week Navigation -->
+
     <div class="card mb-4">
         <div class="card-body">
             <div class="row align-items-center">
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <!-- Weekly Foods Table -->
+    
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -118,7 +118,7 @@
         </div>
     </div>
 
-    <!-- Statistics -->
+    
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="card bg-info text-white">

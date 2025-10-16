@@ -91,7 +91,7 @@
             </div>
         @endif
 
-        <!-- Week Navigation -->
+        
         <div class="card mb-4">
             <div class="card-body">
                 <div class="row align-items-center">
@@ -123,7 +123,7 @@
             </div>
         </div>
 
-        <!-- Weekly Reservations Table -->
+        
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -228,7 +228,7 @@
             </div>
         </div>
 
-        <!-- Statistics -->
+        
         <div class="row mt-4">
             <div class="col-md-4">
                 <div class="card bg-primary text-white">
@@ -264,7 +264,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function reserveFood(date, foodId, element) {
-            // ایجاد فرم و ارسال درخواست
+            
             const form = document.createElement('form');
             form.method = 'POST';
             form.action = '{{ route("user.store-reservation") }}';
