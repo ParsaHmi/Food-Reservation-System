@@ -14,16 +14,13 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
+
     public function loginByUsernameForm()
     {
         return view('admin.users.login-by-username');
     }
 
-    // === متدهای جدید برای کار با دیتابیس ===
-
-    /**
-     * ذخیره کاربر جدید در دیتابیس
-     */
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -44,9 +41,7 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User created successfully!');
     }
 
-    /**
-     * حذف کاربر از دیتابیس
-     */
+
     public function destroy($id)
     {
         $user = User::findOrFail($id);
@@ -55,9 +50,7 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User deleted successfully!');
     }
 
-    /**
-     * نمایش لیست کاربران
-     */
+
     public function index()
     {
         $users = User::all();

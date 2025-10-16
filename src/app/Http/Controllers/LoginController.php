@@ -15,7 +15,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // اعتبارسنجی فرم
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string'
@@ -23,15 +22,11 @@ class LoginController extends Controller
 
         $credentials = $request->only('username', 'password');
 
-        // چک کردن authentication واقعی
         if (Auth::attempt($credentials)) {
-            // ورود موفق
             $request->session()->regenerate();
-            // هدایت به صفحه رزرو هفتگی
             return redirect()->route('user.weekly-reservations');
         }
 
-        // ورود ناموفق
         return back()->withErrors([
             'login_error' => 'Invalid username or password.',
         ])->withInput();
@@ -42,7 +37,6 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        
         return redirect('/login');
     }
 }

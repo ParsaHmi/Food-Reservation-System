@@ -27,12 +27,10 @@ class UserPasswordController extends Controller
 
         $user = Auth::user();
 
-        // بررسی پسورد فعلی
         if (!Hash::check($request->current_password, $user->password)) {
             return back()->withErrors(['current_password' => 'Current password is incorrect.'])->withInput();
         }
 
-        // تغییر پسورد
         $user->password = Hash::make($request->new_password);
         $user->save();
 
