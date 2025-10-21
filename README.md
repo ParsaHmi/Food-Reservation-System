@@ -54,5 +54,7 @@ docker-compose up
 ```
 
 then you open the browser and search  
+```bash
 http://localhost:8888/login  
+```
 this is the root of the project !
