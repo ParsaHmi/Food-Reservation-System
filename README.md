@@ -27,6 +27,8 @@ admin dashboard page has four button :
 - Login By Username : to login to user page with username
 - Add/Delete User : for make or destroying users
 
+### you can use Figma to see the pages :
+[![Figma](https://img.shields.io/badge/🔒_View_Only_Design-F24E1E?style=for-the-badge&logo=figma&logoColor=white)]([https://www.figma.com/file/YOUR-PROJECT-LINK](https://www.figma.com/design/dfWs6aZErjRVqopVmlxpWU/reservation-system?m=auto&t=cmkYPUby41T4p42i-1))
 
 
 ### How database works :
