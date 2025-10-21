@@ -2,6 +2,9 @@
 
 A simple **food reservation system** using **laravel** with **docker**!
 
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 
 ---
 ## Features
@@ -38,9 +41,15 @@ it has three tables:
 
 ## Instalation :
 To try this web app, after installing Docker, you need to clone this repository and build the container using these commands:  
-'''bash
-git clone https://github.com/ParsaHmi/Food-Reservation-System.git'
-'cd food-reservation'
+```bash
+# Clone the repository
+git clone https://github.com/ParsaHmi/Food-Reservation-System.git
+
+# Navigate to project directory
+cd Food-Reservation-System
+
+# Build and start the containers
+docker-compose up -d
 
 you can use "-d" flag to run it at background  
 then you open the browser and search  
