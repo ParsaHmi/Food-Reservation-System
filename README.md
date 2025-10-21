@@ -49,9 +49,10 @@ git clone https://github.com/ParsaHmi/Food-Reservation-System.git
 cd Food-Reservation-System
 
 # Build and start the containers
-docker-compose up -d
+docker-compose up
+#you can use "-d" flag to run it at background  
+```
 
-you can use "-d" flag to run it at background  
 then you open the browser and search  
 http://localhost:8888/login  
 this is the root of the project !
