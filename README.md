@@ -1,10 +1,11 @@
 # Food Reservation System
 
-A simple food reservation system using laravel with docker!
+A simple **food reservation system** using **laravel** with **docker**!
 
 
+---
 ## Features
-There is admin and other users
+There is **admin** and other **users**
 admin can define many foods for weekdays 
 and users can login and reserve a food per day
 users are created by admin and admin can delete them, create food or edit them.
@@ -13,8 +14,9 @@ admin can also login to user page by their username only!
 ## Usage :
 The login page is the root ( /login )
 users can use their username and password to log in
-or they can use "forgot password" to set the new password ( the default new password is "firstname + lastname" )
-and also admin can login using "admin panel" button
+or they can use **"forgot password" **which resets it to  
+  → `firstname + lastname`
+and also admin can login using **"admin panel"** button
 the admin default username and password is ("admin","1234") you can change it in src/app/http/controllers/adminlogincontroller.php
 admin dashboard page has four button :
 - exit : to get back to login page
@@ -25,14 +27,14 @@ admin dashboard page has four button :
 
 
 ### How database works :
-This project use the SQLITE for database  ( can be changed in .env )
+This project use the **SQLITE** for database  ( can be changed in .env )
 it has three tables:
 - users : it keeps the users details
 - foods : it keeps the food detail that admin define on any day
 - reservation : it keeps any reservation details ( for each user and food and day)
 
 
-
+---
 
 ## Instalation :
 To try this web app, after installing Docker, you need to clone this repository and build the container using these commands:  
