@@ -1,31 +1,31 @@
 # Food Reservation System
 
-A food reservation system using laravel with docker‌!
+A simple food reservation system using laravel with docker!
 
 
-## Design & Prototype
-there is admin and other users
+## Features
+There is admin and other users
 admin can define many foods for weekdays 
 and users can login and reserve a food per day
 users are created by admin and admin can delete them, create food or edit them.
 admin can also login to user page by their username only!
 
-## pages and passwords :
-the login page is the root ( /login )
+## Usage :
+The login page is the root ( /login )
 users can use their username and password to log in
-or they can use "forgot password" to set the new passsword ( the default new password is "firtsname + lastname" )
+or they can use "forgot password" to set the new password ( the default new password is "firstname + lastname" )
 and also admin can login using "admin panel" button
 the admin default username and password is ("admin","1234") you can change it in src/app/http/controllers/adminlogincontroller.php
 admin dashboard page has four button :
 - exit : to get back to login page
-- Update foods : to creat or delete foods
+- Update foods : to create or delete foods
 - Login By Username : to login to user page with username
 - Add/Delete User : for make or destroying users
 
 
 
 ### How database works :
-this project use the SQLITE for database
+This project use the SQLITE for database  ( can be changed in .env )
 it has three tables:
 - users : it keeps the users details
 - foods : it keeps the food detail that admin define on any day
@@ -34,10 +34,12 @@ it has three tables:
 
 
 
-## try it :
-to try this web app, after installing Docker, you need to clone this repository and build the container using this command :
-docker-compose up 
-you can use "-d" flag to run it at backgroung
+## Instalation :
+To try this web app, after installing Docker, you need to clone this repository and build the container using these commands:
+'git clone https://github.com/ParsaHmi/Food-Reservation-System.git
+cd food-reservation'
+
+you can use "-d" flag to run it at background
 then you open the browser and search 
 http://localhost:8888/login
 this is the root of the project !
