@@ -35,11 +35,12 @@ it has three tables:
 
 
 ## Instalation :
-To try this web app, after installing Docker, you need to clone this repository and build the container using these commands:
-'git clone https://github.com/ParsaHmi/Food-Reservation-System.git
-cd food-reservation'
+To try this web app, after installing Docker, you need to clone this repository and build the container using these commands:  
+'''bash
+git clone https://github.com/ParsaHmi/Food-Reservation-System.git'
+'cd food-reservation'
 
-you can use "-d" flag to run it at background
-then you open the browser and search 
-http://localhost:8888/login
+you can use "-d" flag to run it at background  
+then you open the browser and search  
+http://localhost:8888/login  
 this is the root of the project !
