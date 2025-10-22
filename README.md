@@ -16,16 +16,26 @@ admin can also login to user page by their username only!
 
 ## Usage :
 The login page is the root ( /login )
+![Login Page](./images/login-screen.png)
 users can use their username and password to log in
+the main page is like this :
+![Login Page](./images/main-page.png)
 or they can use **"forgot password" **which resets it to  
   → `firstname + lastname`
+reset page is like this :
+![Login Page](./images/reset-pass.png)
+also users can change their password in the main page and chnage it to the new password.
 and also admin can login using **"admin panel"** button
+here is the admin login panel :
+![Login Page](./images/admin-login.png)
 the admin default username and password is ("admin","1234") you can change it in src/app/http/controllers/adminlogincontroller.php
 admin dashboard page has four button :
 - exit : to get back to login page
 - Update foods : to create or delete foods
 - Login By Username : to login to user page with username
 - Add/Delete User : for make or destroying users
+here is the admin dashboard page :
+![Login Page](./images/admin-dashboard.png)
 
 ### you can use Figma to see the pages :
 [![Figma](https://img.shields.io/badge/View_Only_Design-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/dfWs6aZErjRVqopVmlxpWU/reservation-system?m=auto&t=cmkYPUby41T4p42i-1)
