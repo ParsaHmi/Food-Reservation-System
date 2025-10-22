@@ -16,7 +16,10 @@ admin can also login to user page by their username only!
 
 ## Usage :
 The login page is the root ( /login )
-![Login Page](./images/login-screen.png)
+<div align="center">
+  <img src="./images/login-screen.png" alt="login" width="800">
+  <br>
+</div>
 users can use their username and password to log in
 the main page is like this :
 ![Login Page](./images/main-page.png)
