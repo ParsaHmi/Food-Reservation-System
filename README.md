@@ -15,30 +15,41 @@ users are created by admin and admin can delete them, create food or edit them.
 admin can also login to user page by their username only!
 
 ## Usage :
-The login page is the root ( /login )
-<div align="center">
-  <img src="./images/login-screen.png" alt="login" width="800">
-  <br>
-</div>
-users can use their username and password to log in
-the main page is like this :
-![Login Page](./images/main-page.png)
-or they can use **"forgot password" **which resets it to  
-  → `firstname + lastname`
-reset page is like this :
-![Login Page](./images/reset-pass.png)
-also users can change their password in the main page and chnage it to the new password.
-and also admin can login using **"admin panel"** button
-here is the admin login panel :
-![Login Page](./images/admin-login.png)
-the admin default username and password is ("admin","1234") you can change it in src/app/http/controllers/adminlogincontroller.php
-admin dashboard page has four button :
-- exit : to get back to login page
-- Update foods : to create or delete foods
-- Login By Username : to login to user page with username
-- Add/Delete User : for make or destroying users
-here is the admin dashboard page :
-![Login Page](./images/admin-dashboard.png)
+
+The login page is the root (`/login`)
+<img src="./images/login-screen.png" alt="Login Page" width="500">
+
+Users can use their username and password to log in.
+
+The main page looks like this:
+<img src="./images/main-page.png" alt="Main Page" width="500">
+
+Or they can use **"forgot password"** which resets it to:  
+→ `firstname + lastname`
+
+The reset page looks like this:
+<img src="./images/reset-pass.png" alt="Reset Password" width="500">
+
+Also users can change their password in the main page.
+
+Admin can login using the **"admin panel"** button:
+<img src="./images/admin-login.png" alt="Admin Login" width="500">
+
+**Default Admin Credentials:** (`"admin"`, `"1234"`)  
+*Change in: `src/app/http/controllers/adminlogincontroller.php`*
+
+**Admin Dashboard Features:**
+-  **Exit** - Return to login page
+-  **Update foods** - Create/delete food items
+-  **Login By Username** - Access user accounts directly  
+-  **Add/Delete User** - User management
+
+Admin dashboard:
+<img src="./images/admin-dashboard.png" alt="Admin Dashboard" width="500">
+
+
+
+
 
 ### you can use Figma to see the pages :
 [![Figma](https://img.shields.io/badge/View_Only_Design-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/design/dfWs6aZErjRVqopVmlxpWU/reservation-system?m=auto&t=cmkYPUby41T4p42i-1)
