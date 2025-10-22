@@ -17,23 +17,30 @@ admin can also login to user page by their username only!
 ## Usage :
 
 The login page is the root (`/login`)<br>
+<div align="center">
 <img src="./images/login-screen.png" alt="Login Page" width="500">
-
+</div>
 Users can use their username and password to log in.
 
 The main page looks like this:<br>
+<div align="center">
 <img src="./images/main-page.png" alt="Main Page" width="500">
+</div>
 ---
 Or they can use **"forgot password"** which resets it to:  
 → `firstname + lastname`
 
 The reset page looks like this:<br>
+<div align="center">
 <img src="./images/reset-pass.png" alt="Reset Password" width="500">
+</div>
 ---
 Also users can change their password in the main page.
 
 Admin can login using the **"admin panel"** button:<br>
+<div align="center">
 <img src="./images/admin-login.png" alt="Admin Login" width="500">
+</div>
 ---
 **Default Admin Credentials:** (`"admin"`, `"1234"`)  
 *Change in: `src/app/http/controllers/adminlogincontroller.php`*
@@ -45,9 +52,9 @@ Admin can login using the **"admin panel"** button:<br>
 -  **Add/Delete User** - User management
 
 Admin dashboard:<br>
+<div align="center">
 <img src="./images/admin-dashboard.png" alt="Admin Dashboard" width="500">
-
-
+</div>
 
 
 
