@@ -7,6 +7,7 @@ A simple **food reservation system** using **laravel** with **docker**!
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 
 ---
+
 ## Features
 There is **admin** and other **users**
 admin can define many foods for weekdays 
@@ -26,7 +27,9 @@ The main page looks like this:<br>
 <div align="center">
 <img src="./images/main-page.png" alt="Main Page" width="500">
 </div>
+
 ---
+
 Or they can use **"forgot password"** which resets it to:  
 → `firstname + lastname`
 
@@ -34,14 +37,18 @@ The reset page looks like this:<br>
 <div align="center">
 <img src="./images/reset-pass.png" alt="Reset Password" width="500">
 </div>
+
 ---
+
 Also users can change their password in the main page.
 
 Admin can login using the **"admin panel"** button:<br>
 <div align="center">
 <img src="./images/admin-login.png" alt="Admin Login" width="500">
 </div>
+
 ---
+
 **Default Admin Credentials:** (`"admin"`, `"1234"`)  
 *Change in: `src/app/http/controllers/adminlogincontroller.php`*
 
